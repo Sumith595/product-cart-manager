@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_URL = "http://localhost:8000/products";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000/products";
 const API = axios.create({
   baseURL: API_URL,
   headers: {
