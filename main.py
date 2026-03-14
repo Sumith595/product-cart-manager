@@ -27,6 +27,9 @@ products = [
     Product(id=4, name="Table", description="A wooden table", price=199.99, quantity=20),
 ]
 
+# Create tables first
+database_models.Base.metadata.create_all(bind=engine)
+
 def init_db():
     db=Session()
     count = db.query(database_models.Product).count()
@@ -36,10 +39,8 @@ def init_db():
             db.add(database_models.Product(**product.model_dump(exclude={'id'})))
         db.commit()
     db.close()
-init_db()
-    
 
-database_models.Base.metadata.create_all(bind=engine)
+init_db()
 
 def db_get():
     db=Session()
